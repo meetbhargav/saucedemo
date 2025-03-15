@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -22,6 +24,7 @@ def login(driver, username, password):
     driver.find_element(By.ID, "user-name").send_keys(username)
     driver.find_element(By.ID, "password").send_keys(password)
     driver.find_element(By.ID, "login-button").click()
+    time.sleep(5)
 
 
 def add_item_to_cart(driver):
@@ -30,6 +33,7 @@ def add_item_to_cart(driver):
     )
     add_to_cart_button = item.find_element(By.CLASS_NAME, "btn_inventory")
     add_to_cart_button.click()
+    time.sleep(5)
 
 
 def verify_item_in_cart(driver):
@@ -39,6 +43,7 @@ def verify_item_in_cart(driver):
         EC.presence_of_element_located((By.CLASS_NAME, "cart_item"))
     )
     assert cart_item is not None
+    time.sleep(5)
 
 
 def logout(driver):
